@@ -7,6 +7,7 @@ import { authRouter } from "./modules/auth/auth.routes.js";
 import { organizationsRouter } from "./modules/organizations/organizations.routes.js";
 import { projectsRouter } from "./modules/projects/projects.routes.js";
 import { tasksRouter } from "./modules/tasks/tasks.routes.js";
+import { activityRouter } from "./modules/activity/activity.routes.js";
 const app = express();
 const port = Number(process.env.PORT ?? 3000);
 
@@ -14,11 +15,14 @@ app.disable("x-powered-by");
 app.use(express.json({ limit: "1mb" }));
 
 app.use(sessionMiddleware);
-app.use("/api/v1/auth", authRouter);
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/organizations", organizationsRouter);
 
+app.use(
+  "/api/v1/organizations/:organizationId",
+  activityRouter
+);
 app.use(
   "/api/v1/organizations/:organizationId/projects",
   projectsRouter
