@@ -1,0 +1,16 @@
+
+{
+  "name": "teamflow",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=@teamflow/web",
+    "dev:api": "npm run dev --workspace=@teamflow/api",
+    "build": "npm run build --workspace=@teamflow/web && npm run build --workspace=@teamflow/api"
+  }
+}
